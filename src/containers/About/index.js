@@ -1,12 +1,13 @@
 import React from "react";
 import { Routes, Route, Link, Outlet } from 'react-router-dom';
 
+import './index.css';
+
 export default function About() {
   // These routes are defined when this component is loaded on demand via
   // dynamic import() on the home page!
 
   return (
-    <div>
       <Routes>
         <Route path="/" element={<AboutLayout />}>
           <Route index element={<AboutIndex />} />
@@ -15,25 +16,26 @@ export default function About() {
           <Route path="Page2" element={<Page2 />} />
         </Route>
       </Routes>
-    </div>
   );
 }
 
 function AboutLayout() {
   return (
-    <div>
-      <nav>
-        <ul>
-          <li><Link to="/About">Index</Link></li>
-          <li><Link to="/About/Page1">Page 1</Link></li>
-          <li><Link to="/About/Page2">Page 2</Link></li>
-          <li><Link to="/About/Page3">Page 3</Link></li>
-        </ul>
-      </nav>
+    <div className="aboutlayout">
+      <div className="aboutlayout__nav">
+        <nav>
+          <ul>
+            <li><Link to="/About">About</Link></li>
+            <li><Link to="/About/Page1">Page 1</Link></li>
+            <li><Link to="/About/Page2">Page 2</Link></li>
+            <li><Link to="/About/Page3">Page 3</Link></li>
+          </ul>
+        </nav>
+      </div>
 
-      <hr />
-
-      <Outlet />
+      <div className="aboutlayout__content">
+        <Outlet />
+      </div>
     </div>
   );
 }

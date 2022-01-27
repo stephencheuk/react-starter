@@ -1,21 +1,29 @@
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+
+import Header from './Header';
+import AppBody from './AppBody';
+
+import Sidebar from './Sidebar';
+//import Widget from './Widget';
+
+import Toast from '../../../components/Toast';
 
 import './index.css';
 
 const Private = () => {
 
   return (
-    <div>
-      <h1>Lazy Loading Example - Private Area</h1>
-      <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/Dashboard">Dashboard</Link></li>
-          <li><Link to="/Settings">Settings</Link></li>
-        </ul>
-      </nav>
-      <hr />
-      <Outlet />
+    <div className='app'>
+      <Toast />
+      <Header />
+      <AppBody className="app__appbody">
+        <div className="app__appbody__sidebar">
+          <Sidebar />
+        </div>
+        <div className="app__appbody__body">
+          <Outlet />
+        </div>
+      </AppBody>
     </div>
   );
 

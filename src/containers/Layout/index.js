@@ -1,32 +1,13 @@
 import { useLocation, Route, Routes } from "react-router-dom";
 
-import { lazy, useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
 
 import Public from "./Public";
 import Private from "./Private";
-import { isPrivateArea } from "../../utils/helper";
+import NoMatchRoute from "./NoMatchRoute";
+import { isPrivateArea, importRoute } from "../../utils/helper";
 
-import './index.css'
-
-const importRoute = route => {
-  const Component = lazy(() => 
-    import(`../../${route.path}`).catch((e) => {
-      console.log(e);
-      import(`./NoComponents`);
-    }));
-
-  let path = route.link === '/' ? '/' : `${route.link}/*`;
-
-  return <Route
-            key={ route.link }
-            path={ path }
-            element={
-              <Suspense fallback={<> Loading </>}>
-                <Component />
-              </Suspense>
-            }
-          />
-}
+import './index.css';
 
 const Layout = ({ menu, ...props }) => {
 
@@ -43,10 +24,16 @@ const Layout = ({ menu, ...props }) => {
       <Routes>
         <Route path="/" element={ area ? <Private /> : <Public /> }>
           {
-            menu && menu.filter(o=>area ? o.protect : !o.protect).map(R => {
+            //menu && menu.filter(o=>area ? o.protect : !o.protect).map(R => {
+            menu && menu.map(R => {
               return importRoute(R);
             })
           }
+          <Route
+            path="*"
+            element={ <NoMatchRoute /> }
+          />
+
         </Route>
       </Routes>
     }

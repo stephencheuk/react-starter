@@ -1,10 +1,10 @@
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import Header from './Header';
 import AppBody from './AppBody';
 
-import Sidebar from './Sidebar';
-import Widget from './Widget';
+//import Sidebar from './Sidebar';
+//import Widget from './Widget';
 
 import './index.css';
 

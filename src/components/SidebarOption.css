@@ -1,0 +1,20 @@
+.sidebaroption{
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  display: flex;
+  border-radius: 4px;
+/*  flex-direction: column;*/
+  cursor: pointer;
+  color: black;
+}
+
+.sidebaroption:hover{
+  background-color: #c0c0c0;
+}
+
+.sidebaroption__icon, .sidebaroption__title{
+  display: flex;
+  justify-content:center;
+  color: black;
+}

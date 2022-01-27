@@ -13,17 +13,18 @@ import logo from './logo.svg';
 const Header = () => {
 
   return (
-    <div className='header'>
+    <header className='header'>
       <div className='header__banner'>
         <div><img src={logo} className="header__banner__logo" alt="logo" /></div>
         <span>Your Company</span>
       </div>
       <div className='header__options'>
         <HeaderOption title={ 'Home' } IconComp={ HomeIcon } link="/" />
-        <HeaderOption title={ 'Login' } IconComp={ PersonIcon } link="/Login" />
+        <HeaderOption title={ 'Sign Up' } IconComp={ PersonIcon } link="/SignUp" />
+        <HeaderOption title={ 'Sign In' } IconComp={ PersonIcon } link="/Login" />
         <HeaderOption title={ 'About' } IconComp={ InfoIcon } link="/About" />
       </div>
-    </div>
+    </header>
   )
 
 }

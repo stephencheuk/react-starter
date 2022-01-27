@@ -5,9 +5,9 @@ import "./AppBody.css";
 const AppBody = ({ children, ...props }) => {
 
   return (
-    <div className='appbody'>
+    <main className='appbody'>
       { children }
-    </div>
+    </main>
   )
 
 }

@@ -1,0 +1,11 @@
+.aboutlayout{
+  display: flex;
+}
+
+.aboutlayout__nav{
+  width: 200px;
+}
+
+.aboutlayout__content{
+  flex: 1;
+}

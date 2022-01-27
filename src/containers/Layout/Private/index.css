@@ -1,0 +1,17 @@
+.app__appbody{
+  display: flex;
+  flex: 1;
+}
+
+.app__appbody__sidebar{
+  width: 200px;
+  display: flex;
+}
+
+.app__appbody__sidebar > *{
+  flex: 1;
+}
+
+.app__appbody__body{
+  flex: 1;
+}
