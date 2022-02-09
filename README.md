@@ -1,5 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
+## Settings
+
+Create a .env file to setup environment
+
+1. REACT_APP_API_URL
+
+```
+REACT_APP_API_URL=192.168.2.83:8080
+```
+
 ## Available Scripts
 
 In the project directory, you can run:

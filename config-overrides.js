@@ -30,14 +30,8 @@ module.exports = function override(config, env) {
     /Failed to parse source map/,
   ];
 
-  const dotenv = require('dotenv').config({ path: __dirname + '/.env' });
-  const isDevelopment = process.env.NODE_ENV !== 'production';
-
   config.plugins.push(
-    new webpack.DefinePlugin({
-      'process.env': JSON.stringify(dotenv.parsed),
-      'process.env.NODE_ENV': JSON.stringify(isDevelopment ? 'development' : 'production'),
-    })
+    new webpack.EnvironmentPlugin(['NODE_ENV', 'REACT_APP_API_URL'])
   );
 
   return config;
