@@ -1,6 +1,7 @@
+const { REACT_APP_API_URL } = process.env;
 
 const mysql_api = {
-  url: 'http://192.168.2.83:8080/api',
+  url: `http://${REACT_APP_API_URL}/api`,
 }
 
 export {
