@@ -1,16 +1,16 @@
 import React from "react";
 
+import Test from 'src/Test';
+
 const Home = (props) => {
 
-//  const { REACT_APP_API_URL } = process.env;
+  //  const { REACT_APP_API_URL } = process.env;
 
   return (
     <div>
       <div>
         Home Here
-      </div>
-      <div>
-        { JSON.stringify(process.env) }
+        <Test />
       </div>
     </div>
   )

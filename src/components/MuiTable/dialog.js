@@ -1,15 +1,13 @@
 import { Dialog, DialogTitle } from '@material-ui/core';
 
 const MyDialog = props => {
-  const { 
-    isOpen = false, 
-    onClose = () => {}, 
-    title = 'My Dialog', 
-    children, 
-    ...rest 
+  const {
+    isOpen = false,
+    onClose = () => { },
+    title = 'My Dialog',
+    children,
+    ...rest
   } = props;
-
-  console.log(rest);
 
   const handleClose = event => {
     onClose(event);

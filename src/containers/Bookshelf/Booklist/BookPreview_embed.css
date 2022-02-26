@@ -1,0 +1,15 @@
+.rpv-default-layout__toolbar {
+  padding-right: 35px;
+}
+
+.BookPreview__CloseIcon {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  padding: 5px 4px 4px 5px;
+  z-index: 2;
+  cursor: pointer;
+}

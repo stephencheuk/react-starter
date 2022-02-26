@@ -8,14 +8,13 @@ import App from './containers/App';
 import Provider from './store';
 import * as serviceWorker from './serviceWorker';
 
+// <React.StrictMode>
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>,
+  <Provider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 

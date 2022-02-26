@@ -1,0 +1,101 @@
+.Bookcard {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  border: 1px solid #e9e9e9;
+  padding: 5px;
+  width: 248px;
+  height: 430px;
+}
+
+.Bookcard__Img {
+  width: 100%;
+  height: 320px;
+  position: relative;
+}
+
+.Bookcard__Img img {
+  width: 100%;
+}
+
+.edge-blur {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  top: 0px;
+  box-shadow: inset 0px 0px 5px 5px white;
+}
+
+.BookPreview {
+  width: 0px;
+  height: 0px;
+  opacity: 0.1;
+  transition: all ease 1s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: #e9e9e9;
+}
+
+.BookPreview.Open {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+.Bookcard__Edit {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+.Bookcard__Edit > button {
+  border: 0;
+  background-color: #e9e9e980;
+}
+
+.booklist .booklist__edit {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  overflow: hidden;
+  transition: width ease 1s, height ease 1s, top ease 1s, left ease 1s;
+}
+
+.booklist .booklist__edit.Open {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  opacity: 1;
+}
+
+.booklist .booklist__edit.Open .mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #ffffff80;
+  backdrop-filter: blur(3px);
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='64' height='64' fill='none' viewport='0 0 40 40' stroke='gray' stroke-width='2'><path d='M3,3 L21,21 M3,21 L21,3'></path></svg>")
+      16 0,
+    auto;
+}
+
+.booklist .booklist__edit .booklist__edit__row {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #e9e9e9;
+  border-radius: 4px;
+}
