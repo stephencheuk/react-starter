@@ -22,6 +22,7 @@
 //}
 
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = function override(config, env) {
   //do stuff with the webpack config...
@@ -33,6 +34,12 @@ module.exports = function override(config, env) {
   config.plugins.push(
     new webpack.EnvironmentPlugin(['NODE_ENV', 'REACT_APP_API_URL'])
   );
+
+  config.resolve = {
+    alias: {
+      'src': path.resolve(__dirname, 'src/'),
+    }
+  };
 
   return config;
 }

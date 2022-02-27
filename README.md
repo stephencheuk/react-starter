@@ -5,6 +5,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Create a .env file to setup environment
 
 1. REACT_APP_API_URL
+2. REACT_APP_FireBase_apiKey
+3. REACT_APP_FireBase_authDomain
+4. REACT_APP_FireBase_projectId
+5. REACT_APP_FireBase_storageBucket
+6. REACT_APP_FireBase_messagingSenderId
+7. REACT_APP_FireBase_appId
+8. REACT_APP_FireBase_measurementId
 
 ```
 REACT_APP_API_URL=192.168.2.83:8080
