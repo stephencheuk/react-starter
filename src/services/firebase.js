@@ -8,6 +8,7 @@ import {
   collection,
   where,
   addDoc,
+  setDoc,
   onSnapshot,
   doc,
 } from "firebase/firestore";
@@ -59,5 +60,6 @@ export {
   collection,
   where,
   addDoc,
+  setDoc,
   auth,
 };

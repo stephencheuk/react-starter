@@ -1,6 +1,6 @@
-.appbody{
+.appbody {
   flex: 1;
-  display: flex;
+  /* display: flex; */
 }
 
 /*.appbody > div:nth-child(1){*/

@@ -13,7 +13,7 @@ const BookPreview = ({ file, setClose, props }) => {
             <div className={open ? 'BookPreview Open' : 'BookPreview'} onClick={e => setOpen(!open) && setClose()}>
                 {open && <div>Close</div>}
                 {
-                    file && open && <iframe src={file} style={{ width: '100%', height: '100%' }} />
+                    file && open && <iframe src={`${file}`} style={{ width: '100%', height: '100%' }} />
                 }
             </div>
         </div>

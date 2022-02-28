@@ -45,7 +45,7 @@ const BookPreview = ({ file, setClose, props }) => {
                                 }}
                             >
                                 <div className="BookPreview__CloseIcon" onClick={e => { setOpen(!open); setClose() }}><CloseIcon /></div>
-                                <Viewer fileUrl={`/${file}`} plugins={[defaultLayoutPluginInstance, thumbnailPluginInstance]} />
+                                <Viewer fileUrl={`${file}`} plugins={[defaultLayoutPluginInstance, thumbnailPluginInstance]} />
                             </div>
                         </Worker>
                     )
