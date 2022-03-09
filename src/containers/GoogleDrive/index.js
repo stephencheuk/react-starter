@@ -1,53 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import { gapi, loadAuth2, loadClientAuth2 } from 'gapi-script'
 
+import DriveSummary from "./DriveSummary"
+
 // import { UserCard } from './UserCard';
 // import './GoogleLogin.css';
 
-var SCOPE = 'https://www.googleapis.com/auth/drive.file';
+var SCOPE = 'profile https://www.googleapis.com/auth/drive';
 var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
 
 const GoogleDrive = () => {
   const [user, setUser] = useState(null);
   const [files, setFiles] = useState([]);
   const [path, setPath] = useState({});
+  const [bname, setBName] = useState('Loading');
   // const [googleAuth, setGoogleAuth] = useState(null);
 
   const initAuth2 = async () => {
-    await loadAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, "profile https://www.googleapis.com/auth/drive").then((user) => {
+    await loadAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, SCOPE).then((user) => {
       console.log(['initAuth2 then', user.currentUser])
     });
     console.log(['initAuth2'])
   }
 
-  useEffect(() => {
-    const setAuth2 = async () => {
-      // initAuth2();
-      // console.log(loadClientAuth2);
-      // let auth2 = await loadAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, 'profile https://www.googleapis.com/auth/drive', "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest");
-      // const auth2 = await loadAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, '')
-      // console.log('first useEffect', auth2.isSignedIn.get());
-      //   if (auth2.isSignedIn.get()) {
-      //     updateUser(auth2.currentUser.get());
-      //     initClient(auth2.currentUser.get());
-      //   } else {
-      //     attachSignin(document.getElementById('customBtn'), auth2);
-      //   }
-    }
-    setAuth2();
-  }, []);
+  // useEffect(() => {
+  //   const setAuth2 = async () => {
+  //     // initAuth2();
+  //     // console.log(loadClientAuth2);
+  //     // let auth2 = await loadAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, SCOPE, discoveryUrl);
+  //     // const auth2 = await loadAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, '')
+  //     // console.log('first useEffect', auth2.isSignedIn.get());
+  //     //   if (auth2.isSignedIn.get()) {
+  //     //     updateUser(auth2.currentUser.get());
+  //     //     initClient(auth2.currentUser.get());
+  //     //   } else {
+  //     //     attachSignin(document.getElementById('customBtn'), auth2);
+  //     //   }
+  //   }
+  //   setAuth2();
+  // }, []);
 
   useEffect(() => {
     if (!user) {
       const setAuth2 = async () => {
-        const auth2 = await loadAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, 'profile https://www.googleapis.com/auth/drive')
+        const auth2 = await loadAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, SCOPE)
         attachSignin(document.getElementById('customBtn'), auth2);
-        await loadClientAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, 'profile https://www.googleapis.com/auth/drive');
+        await loadClientAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, SCOPE);
         gapi.client.init({
           apiKey: process.env.REACT_APP_GOOGLE_DRIVE_API_KEY,
-          discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
+          discoveryDocs: [discoveryUrl],
           clientId: process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID,
-          scope: 'profile https://www.googleapis.com/auth/drive'
+          scope: SCOPE
         }).then(function () {
           console.log('gapi.client.init then')
           // Listen for sign-in state changes.
@@ -63,7 +66,9 @@ const GoogleDrive = () => {
   }, [user])
 
   useEffect(() => {
-    loadFile(path.id);
+    if (user) {
+      loadFile(path.id);
+    }
   }, [path])
 
   function updateSigninStatus(isSignedIn) {
@@ -82,6 +87,7 @@ const GoogleDrive = () => {
   // }
 
   const loadFile = async (parent) => {
+    return;
     //AUTH_TOKEN = "ya29.GltjBlFp1_IiifotwFMgCllpXuyC9IFHLYURXTbfZcwheGTAxxmOaO-7cwU8YSRHli2NIJIT53wEPpnSMEvSDzQTVz49WJtBUREcKXSpoArztBYuhQYwP4NRoCmK"
     var user = (gapi.auth2.getAuthInstance().currentUser.get())
     var profile = user.getBasicProfile()
@@ -124,6 +130,7 @@ const GoogleDrive = () => {
   };
 
   const attachSignin = (element, auth2) => {
+    setBName('Login');
     auth2.attachClickHandler(element, {},
       (googleUser) => {
         updateUser(googleUser);
@@ -163,30 +170,33 @@ const GoogleDrive = () => {
           </div>
         </div>
         <div className="flex flex-col bg-yellow-500">
-          <div> PATH: {" "}
+          <div className='xs:w-full sm:w-1/2 md:w-2/5'><DriveSummary /></div>
+          <div className="flex-1">
+            <div> PATH: {" "}
+              {
+                path.name
+              }
+            </div>
             {
-              path.name
+              files.map((file) => {
+                if (file.mimeType = "application/vnd.google-apps.folder") {
+                  return (
+                    <div key={file.id} className='flex' onClick={e => setPath({ 'id': file.id, 'name': file.name })}>
+                      <div className='w-[40px]'><img src={file.iconLink} /></div>
+                      <div className='flex-1'>{file.name}</div>
+                    </div>
+                  )
+                } else {
+                  return (
+                    <div key={file.id} className='flex' onClick={e => loadFile(file.id)}>
+                      <div className='w-[40px]'><img src={file.iconLink} /></div>
+                      <div className='flex-1'>{file.name}</div>
+                    </div>
+                  )
+                }
+              })
             }
           </div>
-          {
-            files.map((file) => {
-              if (file.mimeType = "application/vnd.google-apps.folder") {
-                return (
-                  <div key={file.id} className='flex' onClick={e => setPath({ 'id': file.id, 'name': file.name })}>
-                    <div className='w-[40px]'><img src={file.iconLink} /></div>
-                    <div className='flex-1'>{file.name}</div>
-                  </div>
-                )
-              } else {
-                return (
-                  <div key={file.id} className='flex' onClick={e => loadFile(file.id)}>
-                    <div className='w-[40px]'><img src={file.iconLink} /></div>
-                    <div className='flex-1'>{file.name}</div>
-                  </div>
-                )
-              }
-            })
-          }
         </div>
       </div>
     );
@@ -195,7 +205,7 @@ const GoogleDrive = () => {
   return (
     <div className="flex">
       <div id="customBtn" className="rounded border border-orange-500 bg-orange-700 p-2 cursor-pointer">
-        Login
+        {bname}
       </div>
     </div>
   );
