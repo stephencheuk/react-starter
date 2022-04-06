@@ -1,7 +1,7 @@
-const { REACT_APP_API_URL } = process.env;
+import { API_URL } from './constant';
 
 const mysql_api = {
-  url: `http://${REACT_APP_API_URL}/api`,
+  url: `http://${API_URL}/api`,
 }
 
 export {

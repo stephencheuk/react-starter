@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { gapi, loadAuth2, loadClientAuth2 } from 'gapi-script'
 
+import {
+  GoogleDrive_apiKEY,
+  GoogleDrive_clientID,
+} from '../../config/constant';
+
 import DriveSummary from "./DriveSummary"
 
 // import { UserCard } from './UserCard';
@@ -17,7 +22,7 @@ const GoogleDrive = () => {
   // const [googleAuth, setGoogleAuth] = useState(null);
 
   const initAuth2 = async () => {
-    await loadAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, SCOPE).then((user) => {
+    await loadAuth2(gapi, GoogleDrive_clientID, SCOPE).then((user) => {
       console.log(['initAuth2 then', user.currentUser])
     });
     console.log(['initAuth2'])
@@ -27,8 +32,8 @@ const GoogleDrive = () => {
   //   const setAuth2 = async () => {
   //     // initAuth2();
   //     // console.log(loadClientAuth2);
-  //     // let auth2 = await loadAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, SCOPE, discoveryUrl);
-  //     // const auth2 = await loadAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, '')
+  //     // let auth2 = await loadAuth2(gapi, GoogleDrive_clientID, SCOPE, discoveryUrl);
+  //     // const auth2 = await loadAuth2(gapi, GoogleDrive_clientID, '')
   //     // console.log('first useEffect', auth2.isSignedIn.get());
   //     //   if (auth2.isSignedIn.get()) {
   //     //     updateUser(auth2.currentUser.get());
@@ -43,13 +48,13 @@ const GoogleDrive = () => {
   useEffect(() => {
     if (!user) {
       const setAuth2 = async () => {
-        const auth2 = await loadAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, SCOPE)
+        const auth2 = await loadAuth2(gapi, GoogleDrive_clientID, SCOPE)
         attachSignin(document.getElementById('customBtn'), auth2);
-        await loadClientAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, SCOPE);
+        await loadClientAuth2(gapi, GoogleDrive_clientID, SCOPE);
         gapi.client.init({
-          apiKey: process.env.REACT_APP_GOOGLE_DRIVE_API_KEY,
+          apiKey: GoogleDrive_apiKEY,
           discoveryDocs: [discoveryUrl],
-          clientId: process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID,
+          clientId: GoogleDrive_clientID,
           scope: SCOPE
         }).then(function () {
           console.log('gapi.client.init then')
@@ -81,7 +86,7 @@ const GoogleDrive = () => {
   }
   // const initClient = async () => {
   //   console.log('initClient');
-  //   await loadClientAuth2(gapi, process.env.REACT_APP_GOOGLE_DRIVE_CLIENT_ID, SCOPE, discoveryUrl);
+  //   await loadClientAuth2(gapi, GoogleDrive_clientID, SCOPE, discoveryUrl);
   //   // window.gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus)
   //   // console.log('initClient', window.gapi.auth2.getAuthInstance());
   // }

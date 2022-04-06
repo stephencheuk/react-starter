@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "initdb": "node initdb.js",
+    "start": "nodemon server.js",
     "dev": "nodemon server.js"
   },
   "keywords": [

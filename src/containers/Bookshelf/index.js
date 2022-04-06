@@ -9,8 +9,7 @@ const Bookshelf = (props) => {
   return (
     <div>
       <Header />
-      { /*<Booklist />*/}
-      <GoogleDrive />
+      <Booklist />
     </div>
   );
 }

@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const { REACT_APP_API_URL } = process.env;
+import { API_URL } from "../config/constant";
 
-const API_URL = `http://${REACT_APP_API_URL}/api/auth/`;
+const api_URL = `http://${API_URL}/api/auth/`;
 
 class AuthService {
   login(username, password) {
     return axios
-      .post(API_URL + "signin", {
+      .post(api_URL + "signin", {
         username,
         password
       })
@@ -25,7 +25,7 @@ class AuthService {
   }
 
   register(username, email, password) {
-    return axios.post(API_URL + "signup", {
+    return axios.post(api_URL + "signup", {
       username,
       email,
       password

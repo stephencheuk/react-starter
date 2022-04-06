@@ -19,3 +19,16 @@ exports.all = (req, res) => {
       res.status(500).send({ message: err.message });
     });
 };
+
+exports.signup = (req, res) => {
+  res.status(200).send({
+    message: "function not implemented yet",
+  });
+};
+
+exports.signin = (req, res) => {
+  res.status(200).send({
+    message: "function not implemented yet",
+  });
+};
+
