@@ -1,17 +1,14 @@
-import { Link } from "react-router-dom";
+import React from 'react'
 
-import "./sidebar.css";
-
-const Sidebar = ({ className, ...props }) => {
-
+const SidebarBlog = ({ className, ...props }) => {
   return (
     <div className={className}>
       <aside class="w-full" aria-label="Sidebar">
         <div class="overflow-y-auto py-3 px-3 bg-gray-50 rounded dark:bg-gray-800">
 
-          <a href="https://flowbite.com" class="flex pl-2.5 mb-3">
-            <svg class="mr-3 h-9" viewBox="0 0 52 72" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.87695 53H28.7791C41.5357 53 51.877 42.7025 51.877 30H24.9748C12.2182 30 1.87695 40.2975 1.87695 53Z" fill="#76A9FA" /><path d="M0.000409561 32.1646L0.000409561 66.4111C12.8618 66.4111 23.2881 55.9849 23.2881 43.1235L23.2881 8.87689C10.9966 8.98066 1.39567 19.5573 0.000409561 32.1646Z" fill="#A4CAFE" /><path d="M50.877 5H23.9748C11.2182 5 0.876953 15.2975 0.876953 28H27.7791C40.5357 28 50.877 17.7025 50.877 5Z" fill="#1C64F2" /></svg>
-            <span class="self-center text-lg font-semibold whitespace-nowrap dark:text-white">Stephen</span>
+          <a href="https://flowbite.com" class="flex flex-col place-items-center pl-2.5 mb-3">
+            <img className='rounded-full w-20' src="https://lh3.googleusercontent.com/a-/AOh14GgLcEHmU_Gw7imUheUwwqhbgJkPqQBbxRfh-BPxUA=s288-p-rw-no" />
+            <span class="self-center text-lg font-semibold whitespace-nowrap dark:text-white m-2">Stephen</span>
           </a>
           <hr className="mb-2" />
           <ul class="p-sidebar space-y-2">
@@ -64,12 +61,7 @@ const Sidebar = ({ className, ...props }) => {
       </aside>
     </div>
   )
-
 }
 
-export default Sidebar;
-/*
-font-size: 18px;
-    color: #7451f8;
 
-*/
+export default SidebarBlog;

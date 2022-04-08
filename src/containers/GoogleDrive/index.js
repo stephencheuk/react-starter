@@ -7,6 +7,8 @@ import {
 } from '../../config/constant';
 
 import DriveSummary from "./DriveSummary"
+import ViewList from './ViewList';
+import ViewThumb from './ViewThumb';
 
 // import { UserCard } from './UserCard';
 // import './GoogleLogin.css';
@@ -19,6 +21,7 @@ const GoogleDrive = () => {
   const [files, setFiles] = useState([]);
   const [path, setPath] = useState({});
   const [bname, setBName] = useState('Loading');
+  const [view, setView] = useState('thumb');
   // const [googleAuth, setGoogleAuth] = useState(null);
 
   const initAuth2 = async () => {
@@ -92,7 +95,6 @@ const GoogleDrive = () => {
   // }
 
   const loadFile = async (parent) => {
-    return;
     //AUTH_TOKEN = "ya29.GltjBlFp1_IiifotwFMgCllpXuyC9IFHLYURXTbfZcwheGTAxxmOaO-7cwU8YSRHli2NIJIT53wEPpnSMEvSDzQTVz49WJtBUREcKXSpoArztBYuhQYwP4NRoCmK"
     var user = (gapi.auth2.getAuthInstance().currentUser.get())
     var profile = user.getBasicProfile()
@@ -108,11 +110,11 @@ const GoogleDrive = () => {
     //conditions.push("mimeType = 'application/vnd.google-apps.folder'")
     conditions.push("'" + parent + "' in parents")
     var query = encodeURIComponent(conditions.join(" and "))
-    console.log(query);
+    //console.log(query);
     // https://www.googleapis.com/drive/v3/files?q=trashed = false and '[object Object]' in parents&fields=files(copyRequiresWriterPermission,createdTime,description,iconLink,id,kind,mimeType,name,ownedByMe,parents,properties,shared,sharingUser,size,teamDriveId,thumbnailLink,trashed,webContentLink,webViewLink),incompleteSearch,kind,nextPageToken&key=
     // https://www.googleapis.com/drive/v3/files?q=trashed = false and 'root' in parents&fields=files(copyRequiresWriterPermission,createdTime,description,iconLink,id,kind,mimeType,name,ownedByMe,parents,properties,shared,sharingUser,size,teamDriveId,thumbnailLink,trashed,webContentLink,webViewLink),incompleteSearch,kind,nextPageToken&key=
     var url = "https://www.googleapis.com/drive/v3/files?q=" + query + "&fields=files(copyRequiresWriterPermission%2CcreatedTime%2Cdescription%2CiconLink%2Cid%2Ckind%2CmimeType%2Cname%2CownedByMe%2Cparents%2Cproperties%2Cshared%2CsharingUser%2Csize%2CteamDriveId%2CthumbnailLink%2Ctrashed%2CwebContentLink%2CwebViewLink)%2CincompleteSearch%2Ckind%2CnextPageToken&key="
-    var url = "https://www.googleapis.com/drive/v3/files?q=" + query + "&fields=files(mimeType, id, name, size, parents)&key="
+    var url = "https://www.googleapis.com/drive/v3/files?q=" + query + "&fields=files(mimeType, id, name, size, parents, iconLink, thumbnailLink)&key="
     //url = 'response.json'
     fetch(url, { method: 'GET', headers, })
       .then(response => response.json())
@@ -125,7 +127,7 @@ const GoogleDrive = () => {
       });
   }
   const updateUser = (currentUser) => {
-    console.log('updateUser');
+    //console.log('updateUser');
     const name = currentUser.getBasicProfile().getName();
     const profileImg = currentUser.getBasicProfile().getImageUrl();
     setUser({
@@ -174,34 +176,16 @@ const GoogleDrive = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col bg-yellow-500">
-          <div className='xs:w-full sm:w-1/2 md:w-2/5'><DriveSummary /></div>
-          <div className="flex-1">
-            <div> PATH: {" "}
-              {
-                path.name
-              }
-            </div>
+        <div className="md:flex bg-yellow-500">
+          <div className='w-full md:w-2/5 xl:w-[30%] 2xl:w-[20%] 3xl:w-[15%] 4xl:w-[10%]'><DriveSummary /></div>
+          <div className='flex flex-1 sm:p-1 md:p-2'>
             {
-              files.map((file) => {
-                if (file.mimeType = "application/vnd.google-apps.folder") {
-                  return (
-                    <div key={file.id} className='flex' onClick={e => setPath({ 'id': file.id, 'name': file.name })}>
-                      <div className='w-[40px]'><img src={file.iconLink} /></div>
-                      <div className='flex-1'>{file.name}</div>
-                    </div>
-                  )
-                } else {
-                  return (
-                    <div key={file.id} className='flex' onClick={e => loadFile(file.id)}>
-                      <div className='w-[40px]'><img src={file.iconLink} /></div>
-                      <div className='flex-1'>{file.name}</div>
-                    </div>
-                  )
-                }
-              })
+              view === 'list' ?
+                <ViewList path={path} files={files} setPath={setPath} loadFile={loadFile} /> :
+                <ViewThumb path={path} files={files} setPath={setPath} loadFile={loadFile} />
             }
           </div>
+
         </div>
       </div>
     );

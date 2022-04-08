@@ -14,12 +14,12 @@ import logo from './logo.svg';
 const Header = () => {
 
   return (
-    <header className='header'>
+    <header className='header md:justify-between'>
       <div className='header__banner'>
         <div><img src={logo} className="header__banner__logo" alt="logo" /></div>
         <span>Your Company</span>
       </div>
-      <div className='header__options'>
+      <div className='hidden md:flex'>
         <HeaderOption title={'Home'} IconComp={HomeIcon} link="/" />
         <HeaderOption title={'Book Shelf'} IconComp={BookIcon} link="/Bookshelf" />
         <HeaderOption title={'Notion'} IconComp={BookIcon} link="/Notion" />

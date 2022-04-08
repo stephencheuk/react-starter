@@ -2,11 +2,13 @@ import React from "react";
 
 import "./AppBody.css";
 
-const AppBody = ({ children, ...props }) => {
+const AppBody = ({ children, className, ...props }) => {
 
   return (
-    <main className='appbody'>
-      { children }
+    <main className={className}>
+      <div className="appbody">
+        {children}
+      </div>
     </main>
   )
 

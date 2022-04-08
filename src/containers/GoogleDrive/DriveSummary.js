@@ -17,11 +17,11 @@ const DriveSummary = ({ gapi, ...props }) => {
   const [summary, setSummary] = useState([]);
   const [result, setResult] = useState([]);
   const [storageQuota, setStorageQuota] = useState({});
-  const [status, setStatus] = useState('Starting');
+  const [count, setCount] = useState({ 'file': 0, 'folder': 0 });
 
   useEffect(() => {
-    getStatus();
     getAllFile();
+    getStatus();
   }, []);
 
   const getAllFile = async () => {
@@ -41,16 +41,16 @@ const DriveSummary = ({ gapi, ...props }) => {
     var url = "https://www.googleapis.com/drive/v3/files?fields=files(mimeType,id,name,size,parents)"
     //var url = "https://www.googleapis.com/drive/v3/files?q="+query+"&fields=files(mimeType,name)&pageSize=1000"
     //url = 'response.json'
-    setStatus('Queuing');
     fetch(url, { method: 'GET', headers, })
       .then(response => response.json())
       .then(data => {
-        setStatus('Success');
-        console.log('summary fetched', data);
         setResult(data);
         if (data.files) {
           const files = data.files;
-          let countSummary = {};
+          let fileCount = {
+            'file': 0,
+            'folder': 0,
+          };
           let fileSummary = {
             'Image': { 'size': 0, 'count': 0, 'icon': <ImageIcon /> },
             'Video': { 'size': 0, 'count': 0, 'icon': <VideoIcon /> },
@@ -60,9 +60,9 @@ const DriveSummary = ({ gapi, ...props }) => {
           };
           files.map((file) => {
             if (file.mimeType === "application/vnd.google-apps.folder") {
-              countSummary['folder_count']++;
+              fileCount['folder']++;
             } else {
-              countSummary['file_count']++;
+              fileCount['file']++;
               if (file.mimeType.indexOf("image") == 0) {
                 fileSummary['Image']['size'] *= 1;
                 fileSummary['Image']['size'] += parseInt(file.size);
@@ -97,7 +97,7 @@ const DriveSummary = ({ gapi, ...props }) => {
               }
             }
           });
-          //console.log(fileSummary);
+          setStorageQuota({ ...storageQuota, ...fileCount });
           const Summary = [];
           for (var type in fileSummary) {
             const hash = {
@@ -106,14 +106,13 @@ const DriveSummary = ({ gapi, ...props }) => {
               'icon': fileSummary[type]['icon'],
               'count': fileSummary[type]['count'],
             };
-            //console.log(hash);
             Summary.push(hash);
           }
           setSummary(Summary);
         }
         // this.setState({ loading: false })
       }).catch((err) => {
-        setStatus('Fail ' + err);
+        console.log('getAllFile fetch err', err);
       });
   }
 
@@ -136,13 +135,13 @@ const DriveSummary = ({ gapi, ...props }) => {
       .then(response => response.json())
       .then(data => {
         setStorageQuota({
+          ...storageQuota,
           limit: data.storageQuota.limit,
           used: data.storageQuota.usage,
           trash: data.storageQuota.usageInDriveTrash,
         });
-        console.log('getStatus fetched', data);
       }).catch((err) => {
-        console.log('getStatus fetched', err);
+        console.log('getStatus fetch err', err);
       });
   }
 

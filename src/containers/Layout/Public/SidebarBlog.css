@@ -1,0 +1,33 @@
+.SidebarBlog .item > a{
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  align-items: center;
+  display: flex;
+  padding: 0.5rem !important;
+}
+/* 
+.SidebarBlog .title{
+  font-size: 10px;
+  font-weight: bold;
+  color: #999999;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.SidebarBlog .item .icon{
+  font-size: 18px;
+  color: #7451f8;
+}
+
+.SidebarBlog .item .text{
+  font-size: 13px;
+  font-weight: 600;
+  color: #888;
+  margin-left: 10px;
+} */
