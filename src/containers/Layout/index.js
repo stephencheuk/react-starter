@@ -15,29 +15,33 @@ const Layout = ({ menu, ...props }) => {
 
   const location = useLocation();
 
-  useEffect(()=>{
+  useEffect(() => {
     setArea(isPrivateArea(location.pathname));
+
+    console.log(menu);
+
   }, [location.pathname]);
 
-  return <>
-    {
-      <Routes>
-        <Route path="/" element={ area ? <Private /> : <Public /> }>
-          {
-            //menu && menu.filter(o=>area ? o.protect : !o.protect).map(R => {
-            menu && menu.map(R => {
-              return importRoute(R);
-            })
-          }
-          <Route
-            path="*"
-            element={ <NoMatchRoute /> }
-          />
+  return (
+    <>
+      {
+        <Routes>
+          <Route path="/" element={area ? <Private /> : <Public />}>
+            {
+              menu && menu.map(R => {
+                return importRoute(R);
+              })
+            }
+            <Route
+              path="*"
+              element={<NoMatchRoute />}
+            />
 
-        </Route>
-      </Routes>
-    }
-  </>
+          </Route>
+        </Routes>
+      }
+    </>
+  )
 }
 
 export default Layout;

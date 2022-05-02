@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+             
+:root{
+  --mp-color-bg: #1f1f38;
+  --mp-color-bg-variant: #2c2c6c;
+  --mp-color-primary: #4db5ff;
+  --mp-color-primary-variant: rgba(77,181,255,0.4);
+  --mp-color-white: white;
+  --mp-color-light: rgba(255,255,255,0.6);
+  --mp-container-width-lg: 75%;
+  --mp-container-width-md: 86%;
+  --mp-container-width-ms: 90%;
+  --mp-transition: all 400ms ease;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.MainPage
+{
+  font-family: "Poppins", sans-serif;
+  background-color: var(--mp-color-bg);
+  min-height: 100vh;
+  color: var(--mp-color-white);
+  line-height: 1.7;
+  background-image: url(./assets/bg-texture.png);
+}
+
+.MainPage .container{
+  width: var(--mp-container-width-lg);
+  margin: 0 auto;
+}
+
+.MainPage h1,
+.MainPage h2,
+.MainPage h3,
+.MainPage h4,
+.MainPage h5
+{
+  font-weight: 500;
+}
+
+.MainPage h1
+{
+  font-size: 2.5rem;
+}
+
+.MainPage section
+{
+  margin-top: 8rem;
+}
+
+.MainPage section h2,
+.MainPage section h5
+{
+  text-align: center;
+  color: var(--mp-color-light);
+}
+
+.MainPage section h2
+{
+  color: var(--mp-color-primary);
+  margin-bottom: 3rem;
+}
+
+.MainPage .text-light {
+  color: var(--mp-color-light) !important;
+}
+
+.MainPage a
+{
+  color: var(--mp-color-primary);
+  transition: var(--mp-transition);
+}
+
+.MainPage a:hover
+{
+  color: var(--mp-color-white)
+}
+
+.MainPage .btn
+{
+  width: max-content;
+  display: inline-block;
+  color: var(--mp-color-primary);
+  padding: 0.75rem 1.2rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  border: 1px solid var(--mp-color-primary);
+  transition: var(--mp-transition);
+}
+
+.MainPage .btn:hover
+{
+  background: var(--mp-color-white);
+  color: var(--mp-color-bg);
+  border-color: transparent;
+}
+
+.MainPage .btn-primary
+{
+  background: var(--mp-color-primary);
+  color: var(--mp-color-bg);
+}
+
+.MainPage img
+{
+  display: block;
+  width: 100%;
+  object-fit: cover;
+
+}
+
+/* reset tailwindcss setting */
+.MainPage img,
+.MainPage svg,
+.MainPage video,
+.MainPage canvas,
+.MainPage audio,
+.MainPage iframe,
+.MainPage embed,
+.MainPage object
+{
+  display: initial;
+  vertical-align: initial;
+}
+
+/* ======================= MEDIA QUERIES (MEDIUM DEVICES) =================== */
+@media screen and (max-width: 1024px) {
+  .MainPage .container {
+    width: var(--mp-container-width-md);
+  }
+  .MainPage section {
+    margin-top: 6rem;
+  }
+}
+
+/* ======================= MEDIA QUERIES (SMALL DEVICES) =================== */
+@media screen and (max-width: 600px) {
+  .MainPage .container {
+    width: var(--mp-container-width-sm);
+  }
+  .MainPage section > h2{
+    margin-bottom: 2rem;
+  }
+}

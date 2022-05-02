@@ -1,0 +1,43 @@
+.header{
+  display: flex;
+  height: 64px;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header__search{
+  width: 200px;
+}
+
+.header__options{
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header__banner{
+  display: flex;
+  align-items: center;
+}
+
+.header__banner__logo {
+  height: 50px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .header__banner__logo {
+    animation: header__banner__logo-float infinite 3s ease-in-out;
+  }
+}
+
+@keyframes header__banner__logo-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

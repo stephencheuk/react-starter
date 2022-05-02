@@ -1,0 +1,77 @@
+.demoApp .sidebarOpt {
+  height: 44px;
+  max-height: 44px;
+  overflow-y: hidden;
+  /* border: 1px solid black; */
+  margin: 8px;
+}
+
+.demoApp .sidebarOpt:hover .item{
+  background-color: rgba(240, 250, 255, 0.7);
+  border: 1px solid rgba(15, 5, 0, 0.9);
+  min-width: calc(var(--da-sidebar-f) - 16px);
+  width: fit-content;
+  position: absolute;
+  max-width: 500px;
+  transition: all 1s;  
+}
+
+.demoApp .sidebarOpt a {
+  text-decoration: none;  
+}
+
+.demoApp .sidebarOpt .item {
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  background-color: rgba(240, 250, 255, 0.55);
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  max-width: 234px;
+
+  transition: all 0.1s;
+}
+
+.demoApp .sidebarOpt__icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #282828;
+}
+
+.demoApp .sidebarOpt__title{
+  flex: 1;
+  color: #282828;
+  font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* 
+.headerOption{
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  display: flex;
+  border-radius: 4px;
+  flex-direction: column;
+  cursor: pointer;
+  color: black;
+}
+
+.headerOption:hover{
+  background-color: #c0c0c0;
+}
+
+.headerOption__icon, .headerOption__title{
+  display: flex;
+  justify-content:center;
+  color: black;
+} */

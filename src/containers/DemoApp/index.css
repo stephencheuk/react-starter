@@ -1,0 +1,40 @@
+:root{
+  --da-sidebar-f: 250px;
+  --da-sidebar-s: 64px;
+}
+
+.demoApp {
+  background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+  linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+  linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+ 
+.demoApp .header {
+  display: flex;
+}
+
+.demoApp .header__banner {
+  display: flex;
+}
+
+.demoApp .header__opt {
+  display: flex;
+}
+
+.demoApp .apps {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: var(--da-sidebar-f);
+}
+
+.demoApp.s .apps {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: var(--da-sidebar-s);
+}
+

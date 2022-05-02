@@ -155,4 +155,4 @@ Object.defineProperty(Number.prototype, 'fileSize', {
   }, writable: false, enumerable: false
 });
 
-export { isPrivateArea, importRoute };
+export { isPrivateArea, importRoute, ErrorBoundary };

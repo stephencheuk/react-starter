@@ -1,0 +1,97 @@
+.MainPage .about__container {
+  display: grid;
+  grid-template-columns: 35% 50% 15%;
+  gap: 15%;
+}
+
+.MainPage .about__me {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 2rem;
+  background: linear-gradient(45deg, transparent, var(--mp-color-primary), transparent);
+  display: grid;
+}
+
+.MainPage .about__me-image {
+  border-radius: 2rem;
+  overflow: hidden;
+  transform: rotate(10deg);
+}
+
+.MainPage .about__me-image:hover {
+  transform: rotate(0);
+}
+
+.MainPage .about__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.MainPage .about__card {
+  background: var(--mp-color-bg-variant);
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  transition: var(--mp-trasition);
+}
+
+.MainPage .about__card:hover {
+  background: transparent;
+  border-color: var(--mp-color-primary-variant);
+  cursor: default;
+}
+
+.MainPage .about__icon {
+  color: var(--mp-color-primary);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.MainPage .about__card h5 {
+  font-size: 0.95rem;
+}
+
+.MainPage .about__card small {
+  font-size: 0.7rem;
+  color: var(--mp-color-light);
+}
+
+.MainPage .about__content p {
+  margin: 2rem 0 2.6rem 0;
+  color: var(--mp-color-light);
+}
+
+/* ======================= MEDIA QUERIES (MEDIUM DEVICES) =================== */
+@media screen and (max-width: 1024px) {
+  .MainPage .about__container {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .MainPage .about__me {
+    width: 50%;
+    margin: 2rem auto 4rem;
+  }
+  .MainPage .about__content p {
+    margin: 1rem 0 1.5rem;
+  }
+}
+
+/* ======================= MEDIA QUERIES (SMALL DEVICES) =================== */
+@media screen and (max-width: 600px) {
+  .MainPage .about__me {
+    width: 65%;
+    margin: 0 auto 3rem;
+  }
+  .MainPage .about__cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .MainPage .about__content {
+    text-align: center;
+  }
+  .MainPage .about__content p {
+    margin: 1.5rem 0;
+  }
+}

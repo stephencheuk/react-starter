@@ -20,8 +20,8 @@ let store = {};
 export default function configureStore(state = initialState) {
 
   const sagaMiddleware = createSagaMiddleware();
-  const composeEnhancers =  typeof window === 'object' && window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] ? 
-                            window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']({ }) : compose;
+  const composeEnhancers = typeof window === 'object' && window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] ?
+    window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']({}) : compose;
 
   store = createStore(
     initReducers,
@@ -39,6 +39,8 @@ export default function configureStore(state = initialState) {
   // dynamic inject new reducer
   store.injectReducer = (key, asyncReducer) => {
     store.asyncReducers[key] = asyncReducer;
+    console.log('inject reducer', key);
+    console.log('reducer list', store.asyncReducers);
     // replace new reducer from createReducer ( combineReducer action )
     store.replaceReducer(createReducer(store.asyncReducers));
   };
@@ -54,9 +56,9 @@ export default function configureStore(state = initialState) {
   //store.injectReducer('i18n', i18nReducer);
   //store.injectReducer('session', rootReducer);
 
-//  Object.entries(initReducer).forEach(([name, exported]) => store.injectReducer(name, exported));
+  //  Object.entries(initReducer).forEach(([name, exported]) => store.injectReducer(name, exported));
 
-//  console.log('store is ready', initReducer);
+  //  console.log('store is ready', initReducer);
 
   return store;
 };

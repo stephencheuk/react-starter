@@ -30,9 +30,9 @@ const MuiTable = ({ ...props }) => {
   const [selData, setSelData] = useState({});
 
   //  const [dialogWord, setDialogWord] = useState('');
-  const [dialogWord] = useState('');
+  // const [dialogWord] = useState('');
   //  const [dialogId, setDialogId] = useState('');
-  const [dialogId] = useState('');
+  // const [dialogId] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const actions = [
@@ -75,13 +75,13 @@ const MuiTable = ({ ...props }) => {
   //    setDialogWord(event.target.value);
   //  }
 
-  const handleAddNewRow = event => {
-    if (!dialogId || !dialogWord) return;
-    // setData(
-    //   // Here you can add the new row to whatever index you want
-    //   [{ id: dialogId, word: dialogWord }, ...data]
-    // );
-  }
+  // const handleAddNewRow = event => {
+  //   if (!dialogId || !dialogWord) return;
+  //   // setData(
+  //   //   // Here you can add the new row to whatever index you want
+  //   //   [{ id: dialogId, word: dialogWord }, ...data]
+  //   // );
+  // }
 
   // useEffect(() => {
   //   // Closes dialog after saving

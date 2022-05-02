@@ -1,0 +1,89 @@
+.MainPage header{
+  height: 100vh;
+  padding-top: 7rem;
+  overflow: hidden;
+}
+
+.MainPage .header__container{
+  text-align: center;
+  height: 100%;
+  position: relative;
+}
+
+/* =================== CTA ================= */
+.MainPage .cta{
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+}
+
+/* =================== HEADER SOCIALS ================= */
+.MainPage .header__socials{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  position: absolute;
+  bottom: 3rem;
+}
+
+.MainPage .header__socials::after{
+  content: '';
+  width: 1px;
+  height: 2rem;
+  background: var(--mp-color-primary);
+}
+
+/* =================== ME ================= */
+.MainPage .me {
+  background: linear-gradient(var(--mp-color-primary), transparent);
+  width: 22rem;
+  height: 30rem;
+  position: absolute;
+  /*
+  -- align center --
+  left: 50%;
+  transform: translateX(-50%);
+  -- or 50% - half of width --
+  left: calc(50% - 11rem);
+  */
+  left: calc(50% - 11rem);
+  margin-top: 4rem;
+  border-radius: 12rem 12rem 0 0;
+  overflow: hidden;
+  padding: 5rem 1rem 0 1rem;
+}
+
+/* =================== SCROLL DOWN ================= */
+.MainPage .scroll__down {
+  position: absolute;
+  right: -2.3rem;
+  bottom: 5rem;
+  transform: rotate(90deg);
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+
+.MainPage .scroll__down svg {
+  display: inline;
+}
+
+/* ======================= MEDIA QUERIES (MEDIUM DEVICES) =================== */
+@media screen and (max-width: 1024px) {
+  .MainPage .header {
+    height: 68vh;
+  }
+  .MainPage section {
+  }
+}
+
+/* ======================= MEDIA QUERIES (SMALL DEVICES) =================== */
+@media screen and (max-width: 600px) {
+  .MainPage .header {
+    height: 100vh;
+  }
+  .MainPage .header__socials, .MainPage .scroll__down {
+    display: none;
+  }
+}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
-import { dbstore, collection, addDoc, setDoc, getDocs, doc, onSnapshot } from "../../../services/firebase";
+// import { dbstore, collection, addDoc, setDoc, getDocs, doc, onSnapshot } from "../../../services/firebase";
+import { dbstore, collection, addDoc, setDoc, getDocs, doc } from "../../../services/firebase";
 
 import Bookcard from "./Bookcard";
 import BookPreview from "./BookPreview";
@@ -22,19 +23,19 @@ const Booklist = (props) => {
   const [edit, setEdit] = useState(false);
   const [editData, setEditData] = useState({});
 
-  const onCollectionUpdate = (querySnapshot) => {
-    const records = [];
-    querySnapshot.forEach((doc) => {
-      const { first, last, born } = doc.data();
-      records.push({
-        key: doc.id,
-        first, // DocumentSnapshot
-        last,
-        born,
-      });
-    });
-    setRec(records);
-  };
+  // const onCollectionUpdate = (querySnapshot) => {
+  //   const records = [];
+  //   querySnapshot.forEach((doc) => {
+  //     const { first, last, born } = doc.data();
+  //     records.push({
+  //       key: doc.id,
+  //       first, // DocumentSnapshot
+  //       last,
+  //       born,
+  //     });
+  //   });
+  //   setRec(records);
+  // };
 
   useEffect(() => {
 
@@ -66,23 +67,25 @@ const Booklist = (props) => {
 
   const UpdateData = async (data) => {
     // console.log('UpdateData', data);
-    let docRef;
+    // let docRef;
     if (data.key) {
-      docRef = await setDoc(doc(dbstore, "books", data.key), {
+      // docRef = 
+      await setDoc(doc(dbstore, "books", data.key), {
         ...data
       });
     } else {
-      docRef = await addDoc(collection(dbstore, "books"), {
+      // docRef = 
+      await addDoc(collection(dbstore, "books"), {
         ...data
       });
     }
     // console.log('after', docRef);
     // if (docRef.id)
-    {
-      setNewData({});
-      getData();
-      setEdit(false);
-    }
+    // {
+    setNewData({});
+    getData();
+    setEdit(false);
+    // }
   }
 
   return (
@@ -119,6 +122,7 @@ const Booklist = (props) => {
       <BookPreview file={Preview} setClose={() => setPreview('')} />
       <BookEdit open={edit} data={editData} OnUpdate={data => UpdateData(data)} onClose={() => setEdit(false)} />
       <button onClick={e => { setEdit(true); setEditData({ 'a': 'b' }) }}>set</button>
+      <div>{JSON.stringify(newData)}</div>
     </div>
   );
 }

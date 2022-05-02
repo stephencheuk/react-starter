@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 import { Worker } from "@react-pdf-viewer/core";
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
-import axios from "axios";
+// import axios from "axios";
 import { thumbnailPlugin } from "@react-pdf-viewer/thumbnail";
 import "@react-pdf-viewer/thumbnail/lib/styles/index.css";
 // Import the main component
-import { LoadError, Viewer } from "@react-pdf-viewer/core";
+import { Viewer } from "@react-pdf-viewer/core";
 // Import the styles
 import "@react-pdf-viewer/core/lib/styles/index.css";
 
@@ -19,11 +19,11 @@ const BookPreview = ({ file, setClose, props }) => {
 
     const [open, setOpen] = useState(false);
 
-    const [numPages, setNumPages] = useState(null);
+    // const [numPages, setNumPages] = useState(null);
 
     const thumbnailPluginInstance = thumbnailPlugin();
     const defaultLayoutPluginInstance = defaultLayoutPlugin();
-    const { Thumbnails } = thumbnailPluginInstance;
+    // const { Thumbnails } = thumbnailPluginInstance;
 
     console.log('BookPreview', file);
 

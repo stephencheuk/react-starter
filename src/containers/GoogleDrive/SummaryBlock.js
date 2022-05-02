@@ -7,7 +7,7 @@ const SummaryBlock = ({ data, ...props }) => {
       <div className='text-2xl'> {data.title} </div>
 
       {
-        (!data || !data.data || data.data.length == 0) ?
+        (!data || !data.data || data.data.length === 0) ?
           (<div>No Summary Data</div>)
           :
           (<div className="flex flex-wrap">

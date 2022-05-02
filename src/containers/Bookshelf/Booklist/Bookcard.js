@@ -11,7 +11,7 @@ const Bookcard = ({ data, OpenPreview, OpenEdit, ...props }) => {
     return (
         <div className="Bookcard">
             <div className="Bookcard__Img" onClick={e => OpenPreview(data?.Link ? `https://drive.google.com/uc?export=view&id=${data.Link}` : '')}>
-                <img src={data?.Image ? `https://drive.google.com/uc?export=download&id=${data.Image}` : ''} />
+                <img src={data?.Image ? `https://drive.google.com/uc?export=download&id=${data.Image}` : ''} alt="" />
                 <div className="edge-blur"></div>
                 <div className="Bookcard__Edit">
                     <button onClick={e => { console.log('edit icon clicked', data); OpenEdit(data); e.stopPropagation(); }}><EditIcon /></button>

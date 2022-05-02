@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import SummaryBlock from './SummaryBlock';
 import StorageBlock from './StorageBlock';
 
 import {
   VideoIcon,
   PDFIcon,
-  ZipIcon,
+  // ZipIcon,
   ImageIcon,
 } from "./Icons";
 
@@ -13,20 +13,14 @@ const DriveSummary = ({ gapi, ...props }) => {
 
   gapi = gapi || window.gapi;
 
-  const [reload, setReload] = useState(false);
+  // const [reload, setReload] = useState(false);
   const [summary, setSummary] = useState([]);
-  const [result, setResult] = useState([]);
   const [storageQuota, setStorageQuota] = useState({});
-  const [count, setCount] = useState({ 'file': 0, 'folder': 0 });
+  // const [count, setCount] = useState({ 'file': 0, 'folder': 0 });
 
-  useEffect(() => {
-    getAllFile();
-    getStatus();
-  }, []);
-
-  const getAllFile = async () => {
+  const getAllFile = useCallback(async () => {
     var user = (gapi.auth2.getAuthInstance().currentUser.get())
-    var profile = user.getBasicProfile()
+    // var profile = user.getBasicProfile()
     var auth = (user.getAuthResponse())
     var AUTH_TOKEN = auth.access_token
 
@@ -37,14 +31,14 @@ const DriveSummary = ({ gapi, ...props }) => {
     //conditions.push("mimeType = 'application/vnd.google-apps.folder'")
     conditions.push("'root' in parents")
     conditions.push("mimeType='image'")
-    var query = encodeURIComponent(conditions.join(" and "))
+    // var query = encodeURIComponent(conditions.join(" and "))
     var url = "https://www.googleapis.com/drive/v3/files?fields=files(mimeType,id,name,size,parents)"
     //var url = "https://www.googleapis.com/drive/v3/files?q="+query+"&fields=files(mimeType,name)&pageSize=1000"
     //url = 'response.json'
     fetch(url, { method: 'GET', headers, })
       .then(response => response.json())
       .then(data => {
-        setResult(data);
+        // console.log(data);
         if (data.files) {
           const files = data.files;
           let fileCount = {
@@ -58,12 +52,12 @@ const DriveSummary = ({ gapi, ...props }) => {
             'PDF': { 'size': 0, 'count': 0, 'icon': <PDFIcon /> },
             'Unkown': { 'size': 0, 'count': 0, 'icon': <ImageIcon /> }
           };
-          files.map((file) => {
+          files.forEach((file) => {
             if (file.mimeType === "application/vnd.google-apps.folder") {
               fileCount['folder']++;
             } else {
               fileCount['file']++;
-              if (file.mimeType.indexOf("image") == 0) {
+              if (file.mimeType.indexOf("image") === 0) {
                 fileSummary['Image']['size'] *= 1;
                 fileSummary['Image']['size'] += parseInt(file.size);
                 fileSummary['Image']['count']++;
@@ -114,11 +108,11 @@ const DriveSummary = ({ gapi, ...props }) => {
       }).catch((err) => {
         console.log('getAllFile fetch err', err);
       });
-  }
+  }, [gapi.auth2, storageQuota])
 
-  const getStatus = async () => {
+  const getStatus = useCallback(async () => {
     var user = (gapi.auth2.getAuthInstance().currentUser.get())
-    var profile = user.getBasicProfile()
+    // var profile = user.getBasicProfile()
     var auth = (user.getAuthResponse())
     var AUTH_TOKEN = auth.access_token
 
@@ -129,7 +123,7 @@ const DriveSummary = ({ gapi, ...props }) => {
     var conditions = []
     conditions.push("'root' in parents")
     conditions.push("mimeType='image'")
-    var query = encodeURIComponent(conditions.join(" and "))
+    // var query = encodeURIComponent(conditions.join(" and "))
     var url = "https://www.googleapis.com/drive/v3/about?fields=storageQuota"
     fetch(url, { method: 'GET', headers, })
       .then(response => response.json())
@@ -143,7 +137,12 @@ const DriveSummary = ({ gapi, ...props }) => {
       }).catch((err) => {
         console.log('getStatus fetch err', err);
       });
-  }
+  }, [gapi.auth2, storageQuota])
+
+  useEffect(() => {
+    getAllFile();
+    getStatus();
+  }, [getAllFile, getStatus]);
 
   return (
     <>

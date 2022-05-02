@@ -17,7 +17,7 @@ function ViewThumb({ path, files, setPath, loadFile }) {
               if (file.mimeType === "application/vnd.google-apps.folder") {
                 return (
                   <div key={file.id} className='flex flex-col cursor-pointer p-1 sm:bg-gray-50 hover:bg-gray-50' onClick={e => setPath({ 'id': file.id, 'name': file.name })}>
-                    <div className='h-40'><img className='h-40' referrerpolicy="no-referrer" src={file.thumbnailLink || file.iconLink} /></div>
+                    <div className='h-40'><img alt="" className='h-40' referrerPolicy="no-referrer" src={file.thumbnailLink || file.iconLink} /></div>
                     <div className='flex-1'>{file.name}</div>
                     <div className='w-[100px] text-right	'>{parseInt(file.size).fileSize()}</div>
                   </div>
@@ -25,7 +25,7 @@ function ViewThumb({ path, files, setPath, loadFile }) {
               } else {
                 return (
                   <div key={file.id} className='flex flex-col cursor-pointer p-1 sm:bg-gray-50 hover:bg-gray-50' onClick={e => loadFile(file.id)}>
-                    <div className='h-40'><img className='h-40' referrerpolicy="no-referrer" src={file.thumbnailLink || file.iconLink} /></div>
+                    <div className='h-40'><img alt="" className='h-40' referrerPolicy="no-referrer" src={file.thumbnailLink || file.iconLink} /></div>
                     <div className='flex-1'>{file.name}</div>
                     <div className='w-[100px] text-right	'>{parseInt(file.size).fileSize()}</div>
                   </div>

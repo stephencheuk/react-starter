@@ -1,5 +1,5 @@
-// import BookPreviewFrame from "./BookPreview_iframe";
-import BookPreviewFrame from "./BookPreview_embed";
+import BookPreviewFrame from "./BookPreview_iframe";
+// import BookPreviewFrame from "./BookPreview_embed";
 
 const BookPreview = (props) => {
 

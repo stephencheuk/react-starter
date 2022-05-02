@@ -7,7 +7,7 @@ import {
   //  DeveloperBoard as DeveloperBoardIcon,
   Person as PersonIcon,
   Book as BookIcon,
-  Storage as StorageIcon,
+  // Storage as StorageIcon,
 } from '@material-ui/icons';
 
 const Menu = [
@@ -20,9 +20,25 @@ const Menu = [
     protect: false,
   },
   {
+    name: 'AdminApp',
+    link: '/AdminApp',
+    path: 'containers/AdminApp',
+    icon: <DashboardIcon />,
+    exact: true,
+    protect: false,
+  },
+  {
     name: 'BookShelf',
     link: '/BookShelf',
     path: 'containers/Bookshelf',
+    icon: <BookIcon />,
+    exact: true,
+    protect: false,
+  },
+  {
+    name: 'Google Drive',
+    link: '/GoogleDrive',
+    path: 'containers/GoogleDrive',
     icon: <BookIcon />,
     exact: true,
     protect: false,

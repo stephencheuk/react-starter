@@ -1,0 +1,9 @@
+.sidebar{
+  padding: 10px;
+  background-color: #e0e0e0;
+}
+
+.sidebar__options{
+  display: flex;
+  flex-direction: column;
+}
