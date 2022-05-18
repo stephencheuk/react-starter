@@ -29,6 +29,7 @@
   flex-direction: column;
   flex: 1;
   margin-left: var(--da-sidebar-f);
+  transition: margin-left 0.5s;
 }
 
 .demoApp.s .apps {
@@ -36,5 +37,9 @@
   flex-direction: column;
   flex: 1;
   margin-left: var(--da-sidebar-s);
+  transition: margin-left 0.5s;
 }
 
+.demoApp svg {
+  display: inline;
+}

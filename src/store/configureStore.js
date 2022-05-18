@@ -2,6 +2,8 @@
 import { createStore, applyMiddleware, combineReducers, compose } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 
+import logger from "redux-logger"
+
 // The initial reducers for 'createStore' use
 import initReducers from './initReducers';
 
@@ -20,6 +22,7 @@ let store = {};
 export default function configureStore(state = initialState) {
 
   const sagaMiddleware = createSagaMiddleware();
+
   const composeEnhancers = typeof window === 'object' && window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] ?
     window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']({}) : compose;
 
@@ -28,7 +31,8 @@ export default function configureStore(state = initialState) {
     state,
     composeEnhancers(
       applyMiddleware(
-        sagaMiddleware
+        sagaMiddleware,
+        logger
       )
     )
   );

@@ -7,7 +7,7 @@ import Sidebar from "./Sidebar"
 import Header from "./Header"
 import AppBody from "./AppBody"
 import LoadingSpinner, { Loading } from './LoadingSpinner'
-import NoMatchRoute from "~/containers/Layout/NoMatchRoute";
+import NoMatchRoute from "./NoMatchRoute";
 
 import "./index.css"
 
@@ -35,7 +35,10 @@ const Message = lazy(() => {
 
 const RemoteCRUD = lazy(() => {
   return Promise.all([
-    import("~/containers/RemoteCRUD"),
+    import("./RemoteCRUD/reducers").then(module => {
+      store.injectReducer('DemoApp_RemoteCRUD', module.reducer);
+      return import('./RemoteCRUD');
+    }),
     new Promise(resolve => setTimeout(resolve, 1000))
   ])
     .then(([moduleExports]) => moduleExports)
@@ -87,7 +90,7 @@ const DemoApp = () => {
   return (
     <Routes>
       <Route path="/" element={
-        <div className={clsx("demoApp", DemoAppRedux.SidebarStatus)}>
+        <div className={clsx("demoApp", DemoAppRedux?.SidebarStatus)}>
           <LoadingSpinner />
           <Sidebar />
           <div className="apps">
@@ -111,7 +114,7 @@ const DemoApp = () => {
             </ErrorBoundary>
           </Suspense>
         } />
-        <Route path="RemoteCRUD" element={
+        <Route path="RemoteCRUD/*" element={
           <Suspense fallback={<Loading />}>
             <ErrorBoundary>
               <RemoteCRUD />

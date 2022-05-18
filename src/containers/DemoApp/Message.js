@@ -6,7 +6,7 @@ const Message = () => {
     //throw new Error('I crashed!');
   })
   return (
-    <div>Message</div>
+    <div className='bg-orange-700'>Message</div>
   )
 }
 

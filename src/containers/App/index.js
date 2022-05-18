@@ -13,7 +13,6 @@ import { store } from '~/store/configureStore'
 const AdminApp = lazy(() => import("~/containers/AdminApp"));
 const DemoApp = lazy(() =>
   import("~/containers/DemoApp/reducers").then(module => {
-    console.log("~/containers/DemoApp/reducers then", module.reducer);
     store.injectReducer('DemoApp', module.reducer);
     return import('~/containers/DemoApp');
   })
@@ -73,19 +72,19 @@ const App = (props) => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout /> }>
+        <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
           <Route path="AdminApp/*" element={
             <Suspense fallback={<>...</>}>
               <AdminApp />
-            </Suspense> }>
+            </Suspense>}>
           </Route>
           <Route path="DemoApp/*" element={
             <Suspense fallback={<>...</>}>
               <ErrorBoundary>
                 <DemoApp />
               </ErrorBoundary>
-            </Suspense> }>
+            </Suspense>}>
           </Route>
           <Route path="*" element={<NoMatch />} />
         </Route>
@@ -107,59 +106,3 @@ function NoMatch() {
 }
 
 export default App;
-
-// import { Routes, Route } from "react-router-dom";
-
-// import MainPage from '~/containers/MainPage';
-
-// import "./app.css";
-
-// const NoMatchRoute = () => {
-
-//   return (
-//     <div>
-//       <h1>404 not find</h1>
-//       <h2>It looks like you're lost...</h2>
-//     </div>
-//   );
-// }
-
-// const App = () => {
-
-//   return (
-//     <>
-//       <Routes>
-//         <Route path="/" element={<MainPage />}>
-//           <Route path="*" element={<NoMatchRoute />} />
-//         </Route>
-//       </Routes>
-//     </>
-//   )
-
-//   // return <MainPage />;
-
-//   /*
-//     return (
-//       <>
-//         {
-//           <Routes>
-//             <Route path="/" element={area ? <Private /> : <Public />}>
-//               {
-//                 menu && menu.map(R => {
-//                   return importRoute(R);
-//                 })
-//               }
-//               <Route
-//                 path="*"
-//                 element={<NoMatchRoute />}
-//               />
-  
-//             </Route>
-//           </Routes>
-//         }
-//       </>
-//     );
-//   */
-// }
-
-// export default App;
