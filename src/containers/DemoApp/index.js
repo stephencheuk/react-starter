@@ -91,7 +91,6 @@ const DemoApp = () => {
     <Routes>
       <Route path="/" element={
         <div className={clsx("demoApp", DemoAppRedux?.SidebarStatus)}>
-          <LoadingSpinner />
           <Sidebar />
           <div className="apps">
             <Header />
@@ -103,19 +102,19 @@ const DemoApp = () => {
       }>
         <Route index element={<></>} />
         <Route path="Bookshelf" element={
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<LoadingSpinner />}>
             <Bookshelf />
           </Suspense>
         } />
         <Route path="Message" element={
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<LoadingSpinner />}>
             <ErrorBoundary>
               <Message />
             </ErrorBoundary>
           </Suspense>
         } />
         <Route path="RemoteCRUD/*" element={
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<LoadingSpinner />}>
             <ErrorBoundary>
               <RemoteCRUD />
             </ErrorBoundary>

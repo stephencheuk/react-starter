@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import { Link, useLocation, useSearchParams } from 'react-router-dom'
+import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom'
 
 const Edit = () => {
 
   let [searchParams, setSearchParams] = useSearchParams();
+  let params = useParams();
 
   let user = searchParams.get("user");
 
@@ -29,7 +30,10 @@ const Edit = () => {
       >Back</Link>
     </div>
     <div>
-      Edit param {userData}
+      Edit param
+      {
+        JSON.stringify({userData, params})
+      }
     </div>
     </div>
   )

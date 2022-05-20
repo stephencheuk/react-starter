@@ -20,6 +20,7 @@ const Header = () => {
         <span>Your Company</span>
       </div>
       <div className='header__opt hidden lg:flex'>
+        { /*
         <HeaderOption title={'Home'} IconComp={HomeIcon} link="/" />
         <HeaderOption title={'Book Shelf'} IconComp={BookIcon} link="/Bookshelf" />
         <HeaderOption title={'Google Drive'} IconComp={BookIcon} link="/GoogleDrive" />
@@ -28,6 +29,7 @@ const Header = () => {
         <HeaderOption title={'Sign Up'} IconComp={PersonIcon} link="/SignUp" />
         <HeaderOption title={'Sign In'} IconComp={PersonIcon} link="/Login" />
         <HeaderOption title={'About'} IconComp={InfoIcon} link="/About" />
+        */ }
       </div>
     </header>
   )

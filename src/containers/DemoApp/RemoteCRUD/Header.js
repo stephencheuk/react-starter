@@ -4,7 +4,7 @@ const Header = (props) => {
   return (
     <div className="header">
       <div className="font-bold text-4xl mb-4">
-        A simple CRUD apps with remote database (<a href="https://www.mongodb.com/">Mongodb</a>)
+      A simple CRUD demo with backend nodejs express and remote database (<a href="https://www.mongodb.com/">Mongodb</a>)
       </div>
     </div>
   );
@@ -14,7 +14,7 @@ const Header = (props) => {
     <div className="header">
       <div className="flex flex-col">
         <div className="font-bold text-4xl">
-          A simple CRUD demo with remote database on <a href="https://www.mongodb.com/">Mongodb</a>
+          A simple CRUD demo with backend nodejs express and remote database <a href="https://www.mongodb.com/">Mongodb</a>
         </div>
         <div className="flex gap-2">
           <div><Link to="./">List</Link></div>

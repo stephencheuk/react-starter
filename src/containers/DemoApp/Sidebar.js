@@ -6,7 +6,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import PersonIcon from '@material-ui/icons/Person';
 import InfoIcon from '@material-ui/icons/Info';
 import BookIcon from '@material-ui/icons/Book';
-import { IoIosArrowBack } from 'react-icons/io';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { VscThreeBars } from 'react-icons/vsc';
 import { GiBearFace } from 'react-icons/gi';
 
@@ -56,7 +56,9 @@ const Sidebar = () => {
             })
           }
         }>
-          <IoIosArrowBack />
+          {
+            DemoAppRedux.SidebarStatus === 's' ? <IoIosArrowForward /> : <IoIosArrowBack />
+          }
         </div>
       </div>
     </div>
