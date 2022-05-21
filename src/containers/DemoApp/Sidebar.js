@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
 
 import SidebarOpt from "./SidebarOpt"
 
 import HomeIcon from '@material-ui/icons/Home';
-import PersonIcon from '@material-ui/icons/Person';
-import InfoIcon from '@material-ui/icons/Info';
+// import PersonIcon from '@material-ui/icons/Person';
+// import InfoIcon from '@material-ui/icons/Info';
 import BookIcon from '@material-ui/icons/Book';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { VscThreeBars } from 'react-icons/vsc';
+// import { VscThreeBars } from 'react-icons/vsc';
 import { GiBearFace } from 'react-icons/gi';
 
-import clsx from "clsx";
+// import clsx from "clsx";
 
 import "./sidebar.css"
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,7 +19,7 @@ const Sidebar = () => {
   const DemoAppRedux = useSelector((state) => state.DemoApp);
   const dispatch = useDispatch();
 
-  const [barSt, setBarSt] = useState('f'); // f: full ; s: small ; n: hide
+  // const [barSt, setBarSt] = useState('f'); // f: full ; s: small ; n: hide
 
   return (
 

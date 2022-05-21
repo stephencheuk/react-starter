@@ -1,8 +1,8 @@
-import { useLocation, Route, Routes, Outlet, Link } from "react-router-dom";
+import { Route, Routes, Outlet, Link } from "react-router-dom";
 
-import React, { useState, useEffect, Suspense, lazy } from "react";
+import React, { Suspense, lazy } from "react";
 
-import NoMatchRoute from "~/containers/Layout/NoMatchRoute";
+// import NoMatchRoute from "~/containers/Layout/NoMatchRoute";
 import MainPage from "~/containers/MainPage";
 // import { ErrorBoundary } from "~/utils/helper";
 

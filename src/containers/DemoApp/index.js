@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from "react"
+import React, { lazy, Suspense } from "react"
 import { Outlet, Route, Routes } from "react-router-dom"
 import { useSelector } from "react-redux"
 import clsx from "clsx"
@@ -6,7 +6,7 @@ import clsx from "clsx"
 import Sidebar from "./Sidebar"
 import Header from "./Header"
 import AppBody from "./AppBody"
-import LoadingSpinner, { Loading } from './LoadingSpinner'
+import LoadingSpinner from './LoadingSpinner'
 import NoMatchRoute from "./NoMatchRoute";
 
 import "./index.css"
@@ -85,7 +85,7 @@ class ErrorBoundary extends React.Component {
 const DemoApp = () => {
 
   const DemoAppRedux = useSelector((state) => state.DemoApp);
-  const [sidebarStatus, setSidebarStatus] = useState('f');
+  // const [sidebarStatus, setSidebarStatus] = useState('f');
 
   return (
     <Routes>

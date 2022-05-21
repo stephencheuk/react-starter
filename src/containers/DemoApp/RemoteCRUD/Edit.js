@@ -4,7 +4,7 @@ import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom'
 
 const Edit = () => {
 
-  let [searchParams, setSearchParams] = useSearchParams();
+  let [searchParams] = useSearchParams();
   let params = useParams();
 
   let user = searchParams.get("user");

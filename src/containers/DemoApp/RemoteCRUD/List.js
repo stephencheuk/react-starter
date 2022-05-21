@@ -16,7 +16,7 @@ const List = () => {
   const onEnterPress = (e) => {
     if (e.key === 'Enter') {
       let q = {};
-      //q = Object.fromEntries([...searchParams]);
+      q = Object.fromEntries([...searchParams]);
       q.search = e.target.value;
       setSearchParams(q)
     }

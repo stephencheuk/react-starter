@@ -1,22 +1,4 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-const Loading = () => {
-  return (
-    <div>Loading ...</div>
-  )
-}
-
 const LoadingSpinner = () => {
-
-  const DemoAppRedux = useSelector((state) => state.DemoApp);
-
-  useEffect(() => {
-    console.log("LoadingSpinner Loaded")
-    return function cleanup() {
-      console.log("LoadingSpinner unloaded")
-    };
-  });
   
   return (
     <div style={{
@@ -36,7 +18,5 @@ const LoadingSpinner = () => {
     </div>
   )
 }
-
-export { Loading }
 
 export default LoadingSpinner

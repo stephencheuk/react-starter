@@ -6,7 +6,7 @@ const Footer = () => {
 
   useEffect(()=>{
 
-    let contacts = ["J&W", "A&B", "C&D", "E&D", "C&K"];
+    //let contacts = ["J&W", "A&B", "C&D", "E&D", "C&K"];
     let dd = [
       { 
         "contact" : "J&W", 
@@ -127,7 +127,7 @@ const Footer = () => {
     //   dd.push(cc);
     // }
 
-    // setData(dd);
+    setData(dd);
 
   }, []);
 
