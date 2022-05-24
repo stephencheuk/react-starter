@@ -31,6 +31,7 @@ const Sidebar = () => {
         </div>
       </div>
       <div className='sidebar__items'>
+        <SidebarOpt title={'Blog'} IconComp={HomeIcon} link="/DemoApp/Blog" />
         <SidebarOpt title={'Demo Home'} IconComp={HomeIcon} link="/DemoApp" />
         <SidebarOpt title={'Message'} IconComp={HomeIcon} link="/DemoApp/Message" />
         <SidebarOpt title={'Book Shelf'} IconComp={HomeIcon} link="/DemoApp/Bookshelf" />

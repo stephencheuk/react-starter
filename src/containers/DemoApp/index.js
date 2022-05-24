@@ -45,6 +45,17 @@ const RemoteCRUD = lazy(() => {
     .catch(error => error.message);
 });
 
+const Blog = lazy(() => {
+  return Promise.all([
+    import("./Blog/reducers").then(module => {
+      store.injectReducer('DemoApp_Blog', module.reducer);
+      return import('./Blog');
+    }),
+    new Promise(resolve => setTimeout(resolve, 1000))
+  ])
+    .then(([moduleExports]) => moduleExports)
+    .catch(error => error.message);
+});
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -93,7 +104,7 @@ const DemoApp = () => {
         <div className={clsx("demoApp", DemoAppRedux?.SidebarStatus)}>
           <Sidebar />
           <div className="apps">
-            <Header />
+            {/* <Header /> */}
             <AppBody>
               <Outlet />
             </AppBody>
@@ -110,6 +121,13 @@ const DemoApp = () => {
           <Suspense fallback={<LoadingSpinner />}>
             <ErrorBoundary>
               <Message />
+            </ErrorBoundary>
+          </Suspense>
+        } />
+        <Route path="Blog/*" element={
+          <Suspense fallback={<LoadingSpinner />}>
+            <ErrorBoundary>
+              <Blog />
             </ErrorBoundary>
           </Suspense>
         } />

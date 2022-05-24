@@ -12,7 +12,7 @@
 }
 
 .demoApp .sidebar:hover{
-  /* z-index: 99; */
+  z-index: 1;
 }
 
 .demoApp .sidebar .sidebar__companylogo {
@@ -39,6 +39,7 @@
   left: 0;
   width: inherit;
   height: 100vh;
+  border-right: 1px solid #9da2a7;
 }
 
 .demoApp.s .sidebar .sidebar__bg {

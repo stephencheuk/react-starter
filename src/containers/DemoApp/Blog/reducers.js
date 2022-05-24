@@ -3,25 +3,23 @@
 import { store } from '~/store/configureStore';
 
 const initState = {
-  Name: 'Remote CRUD App Demo',
+  Name: 'Blog Demo',
 };
 
 const reducer = (state = initState, action) => {
 
-  console.log('~/container/DemoApp/RemoteCRUD/reducers.js', state, action);
+  // if (action.type === 'setSidebarStatus') {
+  //   return {
+  //     ...state,
+  //     SidebarStatus: action.payload,
+  //   };
+  // }
 
-  if (action.type === 'setSidebarStatus') {
-    return {
-      ...state,
-      SidebarStatus: action.payload,
-    };
-  }
-
-  else if (action.type === 'Type2') {
-    return {
-      ...state,
-    };
-  }
+  // else if (action.type === 'Type2') {
+  //   return {
+  //     ...state,
+  //   };
+  // }
 
   return state;
 };
