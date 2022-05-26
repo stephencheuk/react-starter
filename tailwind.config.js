@@ -1,6 +1,7 @@
 module.exports = {
   content: [
     "./src/containers/DemoApp/RemoteCRUD/**/*.{js,jsx,ts,tsx}",
+    "./src/containers/DemoApp/Blog/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {

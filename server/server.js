@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+// import .env parameter
 require('dotenv').config();
 
 const { getDatabase } = require("./database/db.js")
@@ -9,23 +10,27 @@ const app = express();
 
 const helper = require('./utils/helper')(app);
 
+// init all require on express server use
 helper.initAppUse();
 
-// database
-var db = require("./ORM");
-//console.log('start connect to mysql')
-//const mysql = getDatabase().then(()=>{ console.log('database then', mysql) });
-//console.log('ended get database', mysql)
+// // database
+// var db = require("./ORM");
+// //console.log('start connect to mysql')
+// //const mysql = getDatabase().then(()=>{ console.log('database then', mysql) });
+// //console.log('ended get database', mysql)
+// helper.initRoutes(db);
 
-helper.initRoutes(db);
+// load all compoment under ./app folder
+let routeCache = {}
+helper.initDemoAppRoutes(routeCache)
 
 // forbidden root path
 app.get("/", (req, res) => {
-  return res.status(403).send("");
+  return res.status(403).send("Server Started");
 });
 
 // base on url to dymanic import missing route
-helper.setHotRoute(db, app);
+// helper.setHotRoute(db, app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

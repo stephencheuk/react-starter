@@ -28,6 +28,9 @@ const PostsEdit = ({ ...props }) => {
   [formVal.category, setFormVal.category] = useState('');
   [formVal.description, setFormVal.description] = useState('');
 
+  const API = process.env.REACT_APP_BLOG_API_URL;
+  const URL = process.env.REACT_APP_BLOG_URL;
+
   const [editor, setEditor] = useState(null);
 
   const coverRef = useRef();
@@ -52,7 +55,7 @@ const PostsEdit = ({ ...props }) => {
   const UpdateCover = (e) => {
     const data = new FormData();
     data.append("file", e.target.files[0]);
-    axios.post("/api/images/files", data, {
+    axios.post(`${API}/uploadImg`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -67,7 +70,7 @@ const PostsEdit = ({ ...props }) => {
 
   const GetData = async (e) => {
     try {
-      const res = await axios.get("/api/mydata/post/" + id);
+      const res = await axios.get(`${API}/post/` + id);
       console.log(res.data);
       const editorjs = new EditorJS({
         holder: "editorJS",
@@ -101,10 +104,10 @@ const PostsEdit = ({ ...props }) => {
     _id = formVal.id;
     delete formVal.id;
     try {
-      await axios.delete("/api/mydata/del/" + _id, {
+      await axios.delete(`${API}/del/` + _id, {
         id: _id
       });
-      navigate("/posts", { replace: true });
+      navigate(`${URL}/posts`, { replace: true });
     } catch (err) {
       console.log('Delete Handler', err);
     }
@@ -117,7 +120,7 @@ const PostsEdit = ({ ...props }) => {
     });
     try {
       if (formVal.id) {
-        await axios.put("/api/mydata/update/" + formVal.id, {
+        await axios.put(`${API}/update/` + formVal.id, {
           ...formVal
         }).then(() => {
           toast.info("Data Saved", {
@@ -129,7 +132,7 @@ const PostsEdit = ({ ...props }) => {
           });
         });;
       } else {
-        await axios.post("/api/mydata/add", {
+        await axios.post(`${API}/add`, {
           ...formVal
         }).then(() => {
           toast.info("Data Saved", {
@@ -141,7 +144,7 @@ const PostsEdit = ({ ...props }) => {
           });
         });
       }
-      navigate("/posts", { replace: true });
+      navigate(`${URL}/posts`, { replace: true });
     } catch (err) {
       console.log(err);
     }

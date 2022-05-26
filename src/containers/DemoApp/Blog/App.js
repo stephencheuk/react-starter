@@ -2,10 +2,10 @@ import './App.css';
 import Layout from "./Layout";
 
 import {
-  BrowserRouter,
+  // BrowserRouter,
   Routes,
   Route,
-  useNavigate,
+  // useNavigate,
 } from "react-router-dom";
 
 import { ToastContainer } from 'react-toastify';

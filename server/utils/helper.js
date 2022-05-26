@@ -5,6 +5,8 @@ const fs = require('fs');
 var glob = require('glob')
   , path = require('path');
 
+const compression = require("compression");
+
 const helmet = require("helmet");
 const morgan = require('morgan');
 
@@ -17,13 +19,14 @@ module.exports = function (app) {
   self = {
 
     initAppUse: () => {
-      self.cors();
+      self.cors().compress();
       app.use(express.json());
       app.use(express.urlencoded({ extended: true }));
       app.use(bodyParser.json());
       app.use(helmet());
       // log middleware
       app.use(morgan('combined'));
+      return self;
     },
 
     cors: () => {
@@ -39,6 +42,27 @@ module.exports = function (app) {
         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
         next();
       });
+      return self;
+    },
+
+    compress: () => {
+      const shouldCompress = (req, res) => {
+        if (req.headers['x-no-compression']) {
+          // Will not compress responses, if this header is present
+          return false;
+        }
+        // Resort to standard compression
+        return compression.filter(req, res);
+      };      
+      app.use(compression({
+        // filter: Decide if the answer should be compressed or not,
+        // depending on the 'shouldCompress' function above
+        filter: shouldCompress,
+        // threshold: It is the byte threshold for the response 
+        // body size before considering compression, the default is 1 kB
+        threshold: 0
+      }));
+      return self;
     },
 
     initRoutes: (db) => {
@@ -60,6 +84,14 @@ module.exports = function (app) {
       });
 
       glob.sync(`${process.cwd()}/app/**/routes.js`).forEach(function (file) {
+        console.log('path:', file);
+        require(path.resolve(file))(app);
+      });
+    },
+
+    initDemoAppRoutes: (db) => {
+      // import all db initial routine
+      glob.sync(`${process.cwd()}/demoApp/**/routes.js`).forEach(function (file) {
         console.log('path:', file);
         require(path.resolve(file))(app);
       });

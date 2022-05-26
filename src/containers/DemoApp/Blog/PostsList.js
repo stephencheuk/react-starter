@@ -10,6 +10,9 @@ const PostsList = () => {
   const [tag, setTag] = useState("");
   const [posts, setPosts] = useState([]);
 
+  const API = process.env.REACT_APP_BLOG_API_URL;
+  const URL = process.env.REACT_APP_BLOG_URL;
+
   const GetData = async (e) => {
     try {
       const param = Object.fromEntries([...searchParams]);
@@ -17,7 +20,7 @@ const PostsList = () => {
       if (param['tag']) { search.push('tag=' + param['tag']); setTag(param['tag']) }
       if (param['search']) { search.push('search=' + param['search']); setTag(param['search']) }
       if (param['page']) { search.push('page=' + param['page']); }
-      const res = await axios.get("/api/mydata/list" + (search ? '?' + search.join('&') : ''));
+      const res = await axios.get(`${API}/list` + (search ? '?' + search.join('&') : ''));
       setPosts(res.data);
     } catch (err) {
       console.log(err);
@@ -44,7 +47,7 @@ const PostsList = () => {
             }
           </div>
         </div>
-        <div className='p-4 text-2xl font-bold'><Link to="/posts/new" title="New Post">＋</Link></div>
+        <div className='p-4 text-2xl font-bold'><Link to={`${URL}/posts/new`} title="New Post">＋</Link></div>
       </div>
       <Post data={posts} />
     </div>
